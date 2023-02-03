@@ -60,7 +60,7 @@ namespace Test_iterates.Controllers
         /// <param name="model">content of values to add</param>
         /// <returns>the beer added</returns>
         [HttpPost(Name = "AddBeer")]
-        public async Task<IActionResult> AddBeer(SaveBeerDTO model)
+        public async Task<IActionResult> AddBeer(SaveBeerDTO? model)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace Test_iterates.Controllers
                         return BadRequest(message);
                     }
 
-                    return Ok();
+                    return Ok("The beer is deleted succes");
                 }
                 
                 return BadRequest("Id Beer is not valid");
