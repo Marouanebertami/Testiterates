@@ -42,14 +42,10 @@ namespace Test_iterates.Tests
         [Fact]
         public async Task Beer_Add_Return_Ok()
         {
-            var beers = A.Fake<Beer>();
-            var saveBeer = A.Fake<SaveBeerDTO>();
-            var saveItem = A.Fake<BeerItem>();
-            A.CallTo(() => _mapper.Map<Beer>(saveBeer)).Returns(beers);
-            A.CallTo(() => _beerServices.AddBeer(saveBeer)).Returns(saveItem);
+            SaveBeerDTO saveItem = new SaveBeerDTO { Id_brewery = 1, Name = "Hello", Alcohol_Content = 5, Price = 12 };
 
             BeerController controller = new BeerController(_beerServices, _logger, _mapper);
-            var result = await controller.AddBeer(saveBeer);
+            var result = await controller.AddBeer(saveItem);
 
             result.Should().NotBeNull();
             result.Should().BeOfType(typeof(OkObjectResult));
